@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Repository
 public class ParrotRepository implements CrudRepository<Parrot> {
@@ -41,7 +42,7 @@ public class ParrotRepository implements CrudRepository<Parrot> {
         String color = parrot.getColor();
         double weight = parrot.getWeight();
         try (Connection connection = getConnection()) {
-            String query = String.format("INSERT INTO `31_2_parrots`.`parrot` (`color`, `weight`) VALUES ('%s', '%.0f');",
+            String query = String.format(Locale.ENGLISH,"INSERT INTO `31_2_parrots`.`parrot` (`color`, `weight`) VALUES ('%s', '%.2f');",
                     color, weight);
             Statement statement = connection.createStatement();
             boolean rs = statement.execute(query, Statement.RETURN_GENERATED_KEYS);
@@ -108,7 +109,7 @@ public class ParrotRepository implements CrudRepository<Parrot> {
         String color = parrot.getColor();
         double weight = parrot.getWeight();
         try (Connection connection = getConnection()) {
-            String query = String.format("UPDATE `31_2_parrots`.`parrot` SET `color` = '%s', `weight` = '%.0f' WHERE (`id` = '%d');",
+            String query = String.format(Locale.ENGLISH,"UPDATE `31_2_parrots`.`parrot` SET `color` = '%s', `weight` = '%.2f' WHERE (`id` = '%d');",
                     color, weight, id);
             connection.createStatement().executeQuery(query);
             System.out.println("Successful update!");
