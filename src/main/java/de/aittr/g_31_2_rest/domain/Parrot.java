@@ -7,6 +7,9 @@ public class Parrot {
     private String color;
     private double weight;
 
+    public Parrot() {
+    }
+
     public Parrot(int id, String color, double weight) {
         this.id = id;
         this.color = color;
